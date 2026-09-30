@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrostPanel.Core", "src\Fros
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F4AA4B98-BEE5-4499-9B1F-ADA56A874050}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrostPanel.Transport", "src\FrostPanel.Transport\FrostPanel.Transport.csproj", "{7162071B-3A9F-412E-ABA6-81432187480A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,8 +24,13 @@ Global
 		{B30F8BA1-21E3-4FF1-B308-08965C965D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B30F8BA1-21E3-4FF1-B308-08965C965D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B30F8BA1-21E3-4FF1-B308-08965C965D5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7162071B-3A9F-412E-ABA6-81432187480A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7162071B-3A9F-412E-ABA6-81432187480A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7162071B-3A9F-412E-ABA6-81432187480A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7162071B-3A9F-412E-ABA6-81432187480A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B30F8BA1-21E3-4FF1-B308-08965C965D5E} = {E3E03071-07E1-4751-8851-5FA01AAC7041}
+		{7162071B-3A9F-412E-ABA6-81432187480A} = {E3E03071-07E1-4751-8851-5FA01AAC7041}
 	EndGlobalSection
 EndGlobal
