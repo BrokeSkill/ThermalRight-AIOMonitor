@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>FrostPanel.Transport</RootNamespace>
+    <AssemblyName>FrostPanel.Transport</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="LibUsbDotNet" Version="2.2.29" />
+    <ProjectReference Include="../FrostPanel.Core/FrostPanel.Core.csproj" />
+  </ItemGroup>
+</Project>
