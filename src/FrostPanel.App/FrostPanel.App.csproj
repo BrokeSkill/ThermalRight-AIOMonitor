@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>FrostPanel.App</RootNamespace>
+    <AssemblyName>FrostPanel.App</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../FrostPanel.Core/FrostPanel.Core.csproj" />
+    <ProjectReference Include="../FrostPanel.Capture/FrostPanel.Capture.csproj" />
+    <ProjectReference Include="../FrostPanel.Transport/FrostPanel.Transport.csproj" />
+  </ItemGroup>
+</Project>
