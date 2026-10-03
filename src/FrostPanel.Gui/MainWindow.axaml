@@ -1,0 +1,98 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="FrostPanel.Gui.MainWindow"
+        Title="FrostPanel"
+        Width="920" Height="580"
+        MinWidth="760" MinHeight="500"
+        Background="#0f1115">
+  <Window.Styles>
+    <Style Selector="TextBlock.head">
+      <Setter Property="FontSize" Value="18" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="#e8eaed" />
+    </Style>
+    <Style Selector="TextBlock.muted">
+      <Setter Property="Foreground" Value="#8b93a1" />
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style Selector="TextBlock.value">
+      <Setter Property="Foreground" Value="#e8eaed" />
+      <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="Background" Value="#1b2029" />
+      <Setter Property="Foreground" Value="#e8eaed" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="14,8" />
+    </Style>
+    <Style Selector="Border.card">
+      <Setter Property="Background" Value="#151922" />
+      <Setter Property="CornerRadius" Value="12" />
+      <Setter Property="Padding" Value="16" />
+    </Style>
+    <Style Selector="ComboBox">
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+  </Window.Styles>
+
+  <Grid ColumnDefinitions="300,*" Margin="16">
+    <Border Grid.Column="0" Classes="card">
+      <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Spacing="2" Margin="0,0,0,12">
+          <TextBlock Classes="head" Text="Panels" />
+          <TextBlock Classes="muted" Text="Thermalright USB screens" />
+        </StackPanel>
+        <Button DockPanel.Dock="Bottom" Name="RescanButton" Content="Rescan" HorizontalAlignment="Stretch" Margin="0,12,0,0" />
+        <ListBox Name="DeviceList" Background="Transparent" />
+      </DockPanel>
+    </Border>
+
+    <Grid Grid.Column="1" Margin="16,0,0,0" RowDefinitions="Auto,*,Auto">
+      <Border Grid.Row="0" Classes="card" Margin="0,0,0,16">
+        <Grid ColumnDefinitions="*,*,*">
+          <StackPanel Grid.Column="0" Spacing="4">
+            <TextBlock Classes="muted" Text="Model" />
+            <TextBlock Name="ModelText" Classes="value" Text="--" />
+          </StackPanel>
+          <StackPanel Grid.Column="1" Spacing="4">
+            <TextBlock Classes="muted" Text="Panel" />
+            <TextBlock Name="PanelText" Classes="value" Text="--" />
+          </StackPanel>
+          <StackPanel Grid.Column="2" Spacing="4">
+            <TextBlock Classes="muted" Text="Encoding" />
+            <TextBlock Name="EncodingText" Classes="value" Text="--" />
+          </StackPanel>
+        </Grid>
+      </Border>
+
+      <Border Grid.Row="1" Classes="card" Margin="0,0,0,16">
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,*">
+          <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Classes="head" Text="Source" Margin="0,0,0,14" />
+          <StackPanel Grid.Row="1" Grid.Column="0" Spacing="6" Margin="0,0,8,14">
+            <TextBlock Classes="muted" Text="Monitor" />
+            <ComboBox Name="MonitorBox" />
+          </StackPanel>
+          <StackPanel Grid.Row="1" Grid.Column="1" Spacing="6" Margin="8,0,0,14">
+            <TextBlock Classes="muted" Text="Rotation" />
+            <ComboBox Name="RotationBox" />
+          </StackPanel>
+          <StackPanel Grid.Row="2" Grid.Column="0" Spacing="6" Margin="0,0,8,14">
+            <TextBlock Classes="muted" Text="Max fps" />
+            <Slider Name="FpsSlider" Minimum="1" Maximum="60" Value="15" />
+          </StackPanel>
+          <StackPanel Grid.Row="2" Grid.Column="1" Spacing="6" Margin="8,0,0,14">
+            <TextBlock Classes="muted" Text="Live fps" />
+            <TextBlock Name="FpsText" Classes="value" Text="0.0" />
+          </StackPanel>
+          <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Classes="muted" Name="StatusText" Text="Idle" TextWrapping="Wrap" />
+        </Grid>
+      </Border>
+
+      <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
+        <Button Name="StopButton" Content="Stop" IsEnabled="False" />
+        <Button Name="StartButton" Content="Start" />
+      </StackPanel>
+    </Grid>
+  </Grid>
+</Window>
