@@ -15,6 +15,9 @@ internal static class NativeMethods
     [DllImport("user32.dll", CharSet = CharSet.Unicode)]
     internal static extern bool GetMonitorInfo(IntPtr hMonitor, ref MonitorInfoNative info);
 
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+    internal static extern bool EnumDisplayDevices(string? device, uint devNum, ref DisplayDevice displayDevice, uint flags);
+
     [DllImport("gdi32.dll", CharSet = CharSet.Unicode)]
     internal static extern IntPtr CreateDC(string? driver, string? device, string? port, IntPtr devMode);
 
@@ -56,6 +59,26 @@ internal struct MonitorInfoNative
 
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
     internal string szDevice;
+}
+
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+internal struct DisplayDevice
+{
+    internal int cb;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+    internal string DeviceName;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+    internal string DeviceString;
+
+    internal uint StateFlags;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+    internal string DeviceID;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+    internal string DeviceKey;
 }
 
 [StructLayout(LayoutKind.Sequential)]
