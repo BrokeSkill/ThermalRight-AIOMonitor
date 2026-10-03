@@ -33,6 +33,12 @@ public static class MonitorCapture
         return monitors;
     }
 
+    public static string FriendlyName(string deviceName)
+    {
+        var device = new DisplayDevice { cb = Marshal.SizeOf<DisplayDevice>() };
+        return NativeMethods.EnumDisplayDevices(deviceName, 0, ref device, 0) ? device.DeviceString : string.Empty;
+    }
+
     public static BgraFrame Capture(MonitorInfo monitor)
     {
         int width = monitor.Width;
