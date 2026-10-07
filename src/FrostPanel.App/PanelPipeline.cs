@@ -31,8 +31,13 @@ public sealed class PanelPipeline : IDisposable
             return false;
         }
 
-        var frame = MonitorCapture.Capture(_monitor);
         var profile = _device.Profile;
+        if (profile.Jpeg)
+        {
+            throw new NotSupportedException("panel wants JPEG frames; only the RGB565 path is implemented so far");
+        }
+
+        var frame = MonitorCapture.Capture(_monitor);
         var payload = FrameConverter.ToPanelPayload(
             frame.Data,
             frame.Width,

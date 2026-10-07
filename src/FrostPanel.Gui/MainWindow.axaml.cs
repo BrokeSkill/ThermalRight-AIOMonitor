@@ -141,7 +141,17 @@ public partial class MainWindow : Window
             return;
         }
 
-        _pipeline.RenderOnce(_clock.Elapsed.TotalMilliseconds);
+        try
+        {
+            _pipeline.RenderOnce(_clock.Elapsed.TotalMilliseconds);
+        }
+        catch (Exception error)
+        {
+            _statusText.Text = error.Message;
+            Stop();
+            return;
+        }
+
         double seconds = _clock.Elapsed.TotalSeconds;
         if (seconds - _lastReport >= 1)
         {
