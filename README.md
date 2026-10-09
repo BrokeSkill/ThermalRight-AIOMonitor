@@ -9,7 +9,7 @@ Tested on a Thermalright Core Vision 360 at 480x480, about 13 fps.
 ## Install
 
 Download `ThermalRight.AIOMonitor.exe` from the
-[releases page](https://github.com/BrokeSkill/frostpanel/releases) and run it.
+[releases page](https://github.com/BrokeSkill/ThermalRight-AIOMonitor/releases) and run it.
 
 To build from source:
 
@@ -33,7 +33,7 @@ cooler.
 Headless:
 
 ```
-frostpanel [monitorIndex] [maxFps]
+ThermalRight-AIOMonitor [monitorIndex] [maxFps]
 ```
 
 > [!WARNING]
