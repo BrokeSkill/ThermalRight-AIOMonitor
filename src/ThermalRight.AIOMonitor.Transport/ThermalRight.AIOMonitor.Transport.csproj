@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>ThermalRight.AIOMonitor.Transport</RootNamespace>
+    <AssemblyName>ThermalRight.AIOMonitor.Transport</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../ThermalRight.AIOMonitor.Core/ThermalRight.AIOMonitor.Core.csproj" />
+  </ItemGroup>
+</Project>

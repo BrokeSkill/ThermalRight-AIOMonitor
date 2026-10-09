@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>ThermalRight.AIOMonitor.App</RootNamespace>
+    <AssemblyName>ThermalRight.AIOMonitor.App</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../ThermalRight.AIOMonitor.Core/ThermalRight.AIOMonitor.Core.csproj" />
+    <ProjectReference Include="../ThermalRight.AIOMonitor.Capture/ThermalRight.AIOMonitor.Capture.csproj" />
+    <ProjectReference Include="../ThermalRight.AIOMonitor.Transport/ThermalRight.AIOMonitor.Transport.csproj" />
+  </ItemGroup>
+</Project>

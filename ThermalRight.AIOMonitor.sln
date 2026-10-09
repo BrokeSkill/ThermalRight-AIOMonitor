@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E3E03071-07E1-4751-8851-5FA01AAC7041}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThermalRight.AIOMonitor.Core", "src\ThermalRight.AIOMonitor.Core\ThermalRight.AIOMonitor.Core.csproj", "{B30F8BA1-21E3-4FF1-B308-08965C965D5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F4AA4B98-BEE5-4499-9B1F-ADA56A874050}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThermalRight.AIOMonitor.Transport", "src\ThermalRight.AIOMonitor.Transport\ThermalRight.AIOMonitor.Transport.csproj", "{7162071B-3A9F-412E-ABA6-81432187480A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThermalRight.AIOMonitor.Capture", "src\ThermalRight.AIOMonitor.Capture\ThermalRight.AIOMonitor.Capture.csproj", "{169B467B-BF2A-4DA9-ADB2-BE3C3FA00E97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThermalRight.AIOMonitor.App", "src\ThermalRight.AIOMonitor.App\ThermalRight.AIOMonitor.App.csproj", "{E0652026-04D2-4425-9453-93E721B7AD2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThermalRight.AIOMonitor.Cli", "src\ThermalRight.AIOMonitor.Cli\ThermalRight.AIOMonitor.Cli.csproj", "{5D430B75-A455-4770-B86A-ED9675FA0684}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThermalRight.AIOMonitor.Gui", "src\ThermalRight.AIOMonitor.Gui\ThermalRight.AIOMonitor.Gui.csproj", "{C56060F6-5628-4609-9A05-0044302534D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B30F8BA1-21E3-4FF1-B308-08965C965D5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B30F8BA1-21E3-4FF1-B308-08965C965D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B30F8BA1-21E3-4FF1-B308-08965C965D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B30F8BA1-21E3-4FF1-B308-08965C965D5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7162071B-3A9F-412E-ABA6-81432187480A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7162071B-3A9F-412E-ABA6-81432187480A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7162071B-3A9F-412E-ABA6-81432187480A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7162071B-3A9F-412E-ABA6-81432187480A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169B467B-BF2A-4DA9-ADB2-BE3C3FA00E97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169B467B-BF2A-4DA9-ADB2-BE3C3FA00E97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169B467B-BF2A-4DA9-ADB2-BE3C3FA00E97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169B467B-BF2A-4DA9-ADB2-BE3C3FA00E97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0652026-04D2-4425-9453-93E721B7AD2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0652026-04D2-4425-9453-93E721B7AD2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0652026-04D2-4425-9453-93E721B7AD2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0652026-04D2-4425-9453-93E721B7AD2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D430B75-A455-4770-B86A-ED9675FA0684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D430B75-A455-4770-B86A-ED9675FA0684}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D430B75-A455-4770-B86A-ED9675FA0684}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D430B75-A455-4770-B86A-ED9675FA0684}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C56060F6-5628-4609-9A05-0044302534D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56060F6-5628-4609-9A05-0044302534D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C56060F6-5628-4609-9A05-0044302534D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C56060F6-5628-4609-9A05-0044302534D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B30F8BA1-21E3-4FF1-B308-08965C965D5E} = {E3E03071-07E1-4751-8851-5FA01AAC7041}
+		{7162071B-3A9F-412E-ABA6-81432187480A} = {E3E03071-07E1-4751-8851-5FA01AAC7041}
+		{169B467B-BF2A-4DA9-ADB2-BE3C3FA00E97} = {E3E03071-07E1-4751-8851-5FA01AAC7041}
+		{E0652026-04D2-4425-9453-93E721B7AD2D} = {E3E03071-07E1-4751-8851-5FA01AAC7041}
+		{5D430B75-A455-4770-B86A-ED9675FA0684} = {E3E03071-07E1-4751-8851-5FA01AAC7041}
+		{C56060F6-5628-4609-9A05-0044302534D0} = {E3E03071-07E1-4751-8851-5FA01AAC7041}
+	EndGlobalSection
+EndGlobal

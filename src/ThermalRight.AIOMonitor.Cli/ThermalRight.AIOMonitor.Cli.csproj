@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>ThermalRight.AIOMonitor.Cli</RootNamespace>
+    <AssemblyName>frostpanel</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../ThermalRight.AIOMonitor.App/ThermalRight.AIOMonitor.App.csproj" />
+    <ProjectReference Include="../ThermalRight.AIOMonitor.Capture/ThermalRight.AIOMonitor.Capture.csproj" />
+    <ProjectReference Include="../ThermalRight.AIOMonitor.Core/ThermalRight.AIOMonitor.Core.csproj" />
+    <ProjectReference Include="../ThermalRight.AIOMonitor.Transport/ThermalRight.AIOMonitor.Transport.csproj" />
+  </ItemGroup>
+</Project>

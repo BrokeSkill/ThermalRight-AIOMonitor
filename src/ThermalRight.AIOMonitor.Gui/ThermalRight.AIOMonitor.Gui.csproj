@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>ThermalRight.AIOMonitor.Gui</RootNamespace>
+    <AssemblyName>ThermalRight.AIOMonitor</AssemblyName>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.1" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.1" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../ThermalRight.AIOMonitor.App/ThermalRight.AIOMonitor.App.csproj" />
+    <ProjectReference Include="../ThermalRight.AIOMonitor.Capture/ThermalRight.AIOMonitor.Capture.csproj" />
+    <ProjectReference Include="../ThermalRight.AIOMonitor.Core/ThermalRight.AIOMonitor.Core.csproj" />
+    <ProjectReference Include="../ThermalRight.AIOMonitor.Transport/ThermalRight.AIOMonitor.Transport.csproj" />
+  </ItemGroup>
+</Project>
