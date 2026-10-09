@@ -67,7 +67,7 @@
       </Border>
 
       <Border Grid.Row="1" Classes="card" Margin="0,0,0,16">
-        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,*">
+        <Grid ColumnDefinitions="*,200" RowDefinitions="Auto,Auto,Auto,*">
           <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Classes="head" Text="Source" Margin="0,0,0,14" />
           <StackPanel Grid.Row="1" Grid.Column="0" Spacing="6" Margin="0,0,8,14">
             <TextBlock Classes="muted" Text="Monitor" />
@@ -85,7 +85,13 @@
             <TextBlock Classes="muted" Text="Live fps" />
             <TextBlock Name="FpsText" Classes="value" Text="0.0" />
           </StackPanel>
-          <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Classes="muted" Name="StatusText" Text="Idle" TextWrapping="Wrap" />
+          <TextBlock Grid.Row="3" Grid.Column="0" Classes="muted" Name="StatusText" Text="Idle" TextWrapping="Wrap" Margin="0,0,8,0" />
+          <Border Grid.Row="3" Grid.Column="1" Background="#0b0d12" CornerRadius="8" Padding="6">
+            <StackPanel Spacing="6">
+              <TextBlock Classes="muted" Text="On panel" HorizontalAlignment="Center" />
+              <Image Name="PreviewImage" Stretch="Uniform" />
+            </StackPanel>
+          </Border>
         </Grid>
       </Border>
 

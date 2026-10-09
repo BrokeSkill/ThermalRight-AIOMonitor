@@ -31,7 +31,7 @@ public static class Profiles
         [58] = new(320, 240, Rotate: true),
         [60] = new(320, 176, Rotate: true),
         [64] = new(640, 480, Rotate: true),
-        [72] = new(480, 480),
+        [72] = new(480, 480, Jpeg: true),
         [100] = new(320, 320, BigEndian: true),
         [101] = new(320, 320, BigEndian: true),
         [102] = new(320, 320, BigEndian: true),

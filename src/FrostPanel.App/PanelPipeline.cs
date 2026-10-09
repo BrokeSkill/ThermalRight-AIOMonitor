@@ -26,6 +26,8 @@ public sealed class PanelPipeline : IDisposable
 
     public PanelProfile Profile => _device.Profile;
 
+    public byte[]? LastPng { get; private set; }
+
     public bool RenderOnce(double nowMs)
     {
         if (!_pacer.TryAcquire(nowMs))
@@ -35,6 +37,13 @@ public sealed class PanelPipeline : IDisposable
 
         var profile = _device.Profile;
         var frame = MonitorCapture.Capture(_monitor);
+        var scaled = FrostPanel.Core.Imaging.BgraOps.Resample(
+            frame.Data,
+            frame.Width,
+            frame.Height,
+            profile.Width,
+            profile.Height);
+        LastPng = FrostPanel.Core.Imaging.PngEncoder.Encode(scaled, profile.Width, profile.Height);
         var payload = profile.Jpeg
             ? FrameConverter.ToJpegPayload(
                 frame.Data,

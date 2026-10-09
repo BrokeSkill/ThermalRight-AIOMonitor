@@ -21,6 +21,7 @@ public partial class MainWindow : Window
     private readonly TextBlock _encodingText;
     private readonly TextBlock _fpsText;
     private readonly TextBlock _statusText;
+    private readonly Image _previewImage;
     private readonly Button _startButton;
     private readonly Button _stopButton;
 
@@ -45,6 +46,7 @@ public partial class MainWindow : Window
         _statusText = this.FindControl<TextBlock>("StatusText")!;
         _startButton = this.FindControl<Button>("StartButton")!;
         _stopButton = this.FindControl<Button>("StopButton")!;
+        _previewImage = this.FindControl<Image>("PreviewImage")!;
         var rescanButton = this.FindControl<Button>("RescanButton")!;
 
         _rotationBox.ItemsSource = new[] { "0", "90", "180", "270" };
@@ -126,13 +128,33 @@ public partial class MainWindow : Window
     private void Stop()
     {
         _timer.Stop();
-        _pipeline?.Dispose();
+        var pipeline = _pipeline;
+        var panel = _panel;
         _pipeline = null;
-        _panel?.Dispose();
         _panel = null;
         _startButton.IsEnabled = true;
         _stopButton.IsEnabled = false;
         _fpsText.Text = "0.0";
+        _statusText.Text = "Stopped";
+
+        Task.Run(() =>
+        {
+            try
+            {
+                pipeline?.Dispose();
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                panel?.Dispose();
+            }
+            catch
+            {
+            }
+        });
     }
 
     private void Tick()
@@ -160,6 +182,19 @@ public partial class MainWindow : Window
             _fpsText.Text = ((frames - _lastFrames) / (seconds - _lastReport)).ToString("F1");
             _lastFrames = frames;
             _lastReport = seconds;
+            UpdatePreview();
         }
+    }
+
+    private void UpdatePreview()
+    {
+        var png = _pipeline?.LastPng;
+        if (png is null || png.Length == 0)
+        {
+            return;
+        }
+
+        using var stream = new MemoryStream(png);
+        _previewImage.Source = new Avalonia.Media.Imaging.Bitmap(stream);
     }
 }

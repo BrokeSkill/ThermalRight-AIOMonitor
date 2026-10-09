@@ -1,76 +1,69 @@
 # FrostPanel
 
-Turns a Thermalright USB AIO screen into a real second monitor on Windows.
+Puts your desktop onto a Thermalright USB AIO screen.
 
-Windows sees a new display. You drag windows onto it. Whatever lands there shows
-up on the cooler's LCD. It is an extended desktop, not a wallpaper overlay.
+Pick a monitor, press Start, and whatever is on that monitor streams to the
+cooler's LCD. The app shows a live preview of exactly what the panel is
+getting.
+
+![FrostPanel streaming a desktop to a 480x480 panel](docs/screenshot.png)
+
+Verified on real hardware: `87AD:70DB`, 480x480, JPEG, about 13 fps.
 
 ## How it works
 
 The panel has no video input. It is a USB serial device that draws whatever
-frames you send it. So FrostPanel builds a monitor in software, lets Windows
-render to it, copies those pixels, and pushes them down the USB protocol the
-panel already speaks.
+frames you send it, and it drops back to its own logo the moment the frames
+stop. So FrostPanel grabs a monitor, encodes the frame the way the panel wants
+it, and keeps sending without gaps.
 
 ```
-Virtual Display Driver  ->  Windows renders the desktop to a real monitor
-        |
-   screen grab (GDI)  ->  BGRA pixels of that monitor
-        |
-   convert  ->  scale, rotate, RGB565
-        |
-   USB  ->  the panel's own wire protocol
+monitor grab  ->  BGRA pixels
+      |
+   scale + rotate  ->  panel resolution
+      |
+   encode  ->  JPEG or RGB565
+      |
+   USB bulk  ->  the panel's own wire protocol
 ```
+
+The frame is a 64-byte header then the payload: magic `12 34 56 78`, a command
+byte (2 for JPEG, 3 for RGB565), width, height, and the payload length. One
+bulk transfer per frame.
 
 Four pieces:
 
 - `FrostPanel.Core` the wire protocols, the panel profile tables, pixel
   conversion and frame pacing. Plain C#, no Windows calls.
-- `FrostPanel.Transport` device detection and USB I/O through LibUsbDotNet,
-  the same library Thermalright's own Windows tool uses.
-- `FrostPanel.Capture` display enumeration and a monitor grab.
+- `FrostPanel.Transport` device detection and USB I/O straight through WinUSB
+  (setupapi and winusb.dll). LibUsbDotNet enumerates nothing usable here.
+- `FrostPanel.Capture` display enumeration and the monitor grab.
 - `FrostPanel.App` the pipeline that ties a panel to a monitor.
 - `FrostPanel.Gui` the desktop app. `FrostPanel.Cli` a headless driver.
 
 ## Requirements
 
 - Windows 10 or 11, x64.
-- The Virtual Display Driver, for the virtual monitor. The installer adds it.
-- .NET 8 SDK, to build.
 - A supported panel (see below).
+- .NET 8 SDK, to build.
 
 ## Build
 
 ```
 dotnet build
-dotnet publish src/FrostPanel.Gui -c Release -r win-x64 -o artifacts/publish
+dotnet publish src/FrostPanel.Gui -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o artifacts/publish
 ```
 
-It runs anywhere .NET runs.
-
-## Install
-
-Elevated PowerShell:
-
-```
-installer\install.ps1 -Width 480 -Height 480
-```
-
-It publishes nothing itself; build first. The script installs the driver,
-writes the driver settings for your panel's resolution, copies the app to
-Program Files, and registers it at login. Reboot once so the driver loads.
-
-To remove it:
-
-```
-installer\uninstall.ps1
-```
+That gives one `FrostPanel.exe` you can move anywhere.
 
 ## Use
 
-The app lists the panels it found, the displays you can capture, and lets you
-set a rotation and an fps cap. Pick a panel, pick the monitor, press Start. The
-live fps readout tells you what the panel actually sustains.
+1. Close the Thermalright software (TRCC). It holds the panel exclusively.
+2. Run `FrostPanel.exe`.
+3. Pick your panel, pick the monitor to mirror, press Start.
+
+The preview on the right is drawn at the panel's own resolution, so it shows
+the real crop and squeeze. Live fps tells you what the panel sustains.
 
 Headless:
 
@@ -99,23 +92,19 @@ model and resolution come from the device itself rather than the id alone.
 
 These are real and current.
 
-- Close the Thermalright software (TRCC) before starting. It holds the panel
-  exclusively, so the app cannot open a device another program owns. It says so
-  when the open fails.
-- JPEG panels are not wired yet. Many of the wide panels (1280x480, 1920x462,
-  854x480, 360x360) take a JPEG frame. FrostPanel only encodes RGB565, so it
-  refuses those panels with a clear error instead of painting garbage. The
-  RGB565 panels (320x320, 480x480, the 320x240 family) work.
+- Close TRCC first. It holds the panel exclusively, so the app cannot open a
+  device another program owns. It says so when the open fails.
+- The stream must keep running. Stop it and the panel returns to its logo
+  within a second. That is the panel, not a bug.
 - SCSI panels are stubbed. The framing is written, the SCSI pass-through
   transport is not.
-- Capture is GDI BitBlt, not DXGI duplication. Simpler and dependency-free, and
-  fast enough for a panel that rarely clears 30 fps. Swap it if you see tearing
-  or protected content.
-- Refresh is low by nature. A 480x480 frame is 460 KB. Full-speed USB gives a
-  few frames a second, high-speed more, but the panel's own chip usually caps
-  it. This is a glanceable second screen, not a gaming display.
-- Not yet exercised on real hardware. It builds clean and the wire formats are
-  pinned to the source, but the first run on glass is still ahead.
+- Capture is GDI `CopyFromScreen`, not DXGI duplication. Simpler and
+  dependency-free, fast enough for a panel that rarely clears 30 fps. Swap it
+  if you see tearing or protected content.
+- Refresh is low by nature. A 480x480 RGB565 frame is 460 KB; the JPEG path is
+  far lighter. This is a glanceable second screen, not a gaming display.
+- Only exercised on real hardware for `87AD:70DB`. Other entries come from the
+  protocol tables and are untested here.
 
 ## License
 
@@ -131,6 +120,4 @@ trademark and appears here only to say what the software is for.
 
 - trcc-linux (Lexonight1) for the reverse-engineered USB protocols and the
   device tables. https://github.com/Lexonight1/thermalright-trcc-linux
-- Virtual Display Driver (VirtualDrivers) for the virtual monitor. MIT.
-  https://github.com/VirtualDrivers/Virtual-Display-Driver
 - The Windows WinUSB API (setupapi and winusb.dll) for the USB layer.
