@@ -99,6 +99,9 @@ model and resolution come from the device itself rather than the id alone.
 
 These are real and current.
 
+- Close the Thermalright software (TRCC) before starting. It holds the panel
+  exclusively, so the app cannot open a device another program owns. It says so
+  when the open fails.
 - JPEG panels are not wired yet. Many of the wide panels (1280x480, 1920x462,
   854x480, 360x360) take a JPEG frame. FrostPanel only encodes RGB565, so it
   refuses those panels with a clear error instead of painting garbage. The
@@ -130,4 +133,4 @@ trademark and appears here only to say what the software is for.
   device tables. https://github.com/Lexonight1/thermalright-trcc-linux
 - Virtual Display Driver (VirtualDrivers) for the virtual monitor. MIT.
   https://github.com/VirtualDrivers/Virtual-Display-Driver
-- LibUsbDotNet for the USB layer.
+- The Windows WinUSB API (setupapi and winusb.dll) for the USB layer.

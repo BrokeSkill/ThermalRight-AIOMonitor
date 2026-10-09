@@ -128,6 +128,7 @@ public partial class MainWindow : Window
         _timer.Stop();
         _pipeline?.Dispose();
         _pipeline = null;
+        _panel?.Dispose();
         _panel = null;
         _startButton.IsEnabled = true;
         _stopButton.IsEnabled = false;
