@@ -11,13 +11,15 @@ public sealed class PanelPipeline : IDisposable
     private readonly MonitorInfo _monitor;
     private readonly int _rotationDegrees;
     private readonly FramePacer _pacer;
+    private readonly int _jpegQuality;
 
-    public PanelPipeline(PanelDevice device, MonitorInfo monitor, int rotationDegrees, int maxFps)
+    public PanelPipeline(PanelDevice device, MonitorInfo monitor, int rotationDegrees, int maxFps, int jpegQuality = 90)
     {
         _device = device;
         _monitor = monitor;
         _rotationDegrees = rotationDegrees;
         _pacer = new FramePacer(maxFps);
+        _jpegQuality = jpegQuality;
     }
 
     public long FramesSent { get; private set; }
@@ -32,20 +34,24 @@ public sealed class PanelPipeline : IDisposable
         }
 
         var profile = _device.Profile;
-        if (profile.Jpeg)
-        {
-            throw new NotSupportedException("panel wants JPEG frames; only the RGB565 path is implemented so far");
-        }
-
         var frame = MonitorCapture.Capture(_monitor);
-        var payload = FrameConverter.ToPanelPayload(
-            frame.Data,
-            frame.Width,
-            frame.Height,
-            profile.Width,
-            profile.Height,
-            _rotationDegrees,
-            profile.BigEndian);
+        var payload = profile.Jpeg
+            ? FrameConverter.ToJpegPayload(
+                frame.Data,
+                frame.Width,
+                frame.Height,
+                profile.Width,
+                profile.Height,
+                _rotationDegrees,
+                _jpegQuality)
+            : FrameConverter.ToPanelPayload(
+                frame.Data,
+                frame.Width,
+                frame.Height,
+                profile.Width,
+                profile.Height,
+                _rotationDegrees,
+                profile.BigEndian);
         _device.SendFrame(payload);
         FramesSent++;
         return true;

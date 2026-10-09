@@ -1,6 +1,5 @@
 using FrostPanel.Core;
-using LibUsbDotNet;
-using LibUsbDotNet.Main;
+using FrostPanel.Transport.WinUsb;
 
 namespace FrostPanel.Transport;
 
@@ -11,13 +10,12 @@ public static class DeviceDetector
     public static List<DetectedDevice> Enumerate()
     {
         var found = new List<DetectedDevice>();
-        foreach (UsbRegistry registry in UsbDevice.AllDevices)
+        foreach (var device in WinUsbEnumerator.Enumerate())
         {
-            var id = new UsbId((ushort)registry.Vid, (ushort)registry.Pid);
-            var wire = KnownDevices.Resolve(id);
+            var wire = KnownDevices.Resolve(device.Id);
             if (wire is not null)
             {
-                found.Add(new DetectedDevice(id, wire.Value, registry.DevicePath ?? string.Empty));
+                found.Add(new DetectedDevice(device.Id, wire.Value, device.Path));
             }
         }
 

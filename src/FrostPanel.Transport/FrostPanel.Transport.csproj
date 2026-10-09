@@ -5,7 +5,6 @@
     <AssemblyName>FrostPanel.Transport</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="LibUsbDotNet" Version="2.2.29" />
     <ProjectReference Include="../FrostPanel.Core/FrostPanel.Core.csproj" />
   </ItemGroup>
 </Project>
