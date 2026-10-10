@@ -6,6 +6,16 @@ Turns the LCD on your Thermalright AIO into a second monitor.
 
 Tested on a Thermalright Core Vision 360 at 480x480, about 13 fps.
 
+## Media
+
+[![Bad Apple playing on the panel](docs/bad-apple.gif)](docs/bad-apple.mp4)
+
+*Of course I played Bad Apple on it.*
+
+![Helldivers 2 on the panel](docs/helldivers-2.jpg)
+
+*Displaying Helldivers 2*
+
 ## Install
 
 Download `ThermalRight.AIOMonitor.exe` from the
